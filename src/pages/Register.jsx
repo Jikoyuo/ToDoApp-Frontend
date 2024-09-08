@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../axiosConfig';
-import { Button, TextField, Typography, Container, CssBaseline } from '@mui/material';
+import { Button, TextField, Typography, Container, CssBaseline, Box } from '@mui/material';
 
 const Register = () => {
     const [username, setUsername] = useState('');
@@ -17,10 +17,9 @@ const Register = () => {
             });
             console.log(response.data);
             setMessage('Registration successful, redirecting to login...');
-            // Redirect to login page
             setTimeout(() => {
                 navigate('/login');
-            }, 2000); // Redirect after 2 seconds to allow user to see the message
+            }, 2000); 
         } catch (error) {
             console.error('Error:', error.response ? error.response.data : error.message);
             setMessage('Error registering user');
@@ -49,6 +48,20 @@ const Register = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        gap: '10px'
+                    }}
+                >
+                    <Typography>Have an account?</Typography>
+                    <Link to="/login" sx={{ textDecoration: "none", color: 'inherit' }}>
+                        SignIn
+                    </Link>
+                </Box>
+
                 <Button
                     type="button"
                     fullWidth

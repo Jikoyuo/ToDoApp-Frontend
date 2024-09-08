@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../axiosConfig';
-import { TextField, Button, List, ListItem, ListItemText, Container, Typography, IconButton, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { TextField, Button, List, ListItem, ListItemText, Container, Typography, IconButton, Dialog, DialogActions, DialogContent, DialogTitle, Box } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const ToDoList = () => {
     const [tasks, setTasks] = useState([]);
@@ -11,6 +11,7 @@ const ToDoList = () => {
     const [editTask, setEditTask] = useState(null);
     const [openEditDialog, setOpenEditDialog] = useState(false);
     const { username } = useParams();
+    const navigate = useNavigate(); // Initialize useNavigate,
 
     useEffect(() => {
         if (!username) return; // If no username, do nothing
@@ -81,15 +82,38 @@ const ToDoList = () => {
         }
     };
 
+    const handleLogout = () => {
+        navigate('/login'); // Redirect to login page
+    };
+
     return (
         <Container
         sx={{
             marginTop:'50px'
         }}
         >
+
+        <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginBottom:'30px'
+                }}
+        >
             <Typography sx={{fontSize:'24px', fontWeight:'bold'}}>
                 Halo, {username}
             </Typography>
+            
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={handleLogout}
+            >
+                Logout
+            </Button>
+            </Box>
             <TextField
                 label="New Task"
                 value={newTask}
@@ -101,6 +125,7 @@ const ToDoList = () => {
                 variant="contained"
                 color="primary"
                 onClick={handleAddTask}
+                sx={{marginTop:'10px'}}
             >
                 Add Task
             </Button>
@@ -108,14 +133,17 @@ const ToDoList = () => {
             sx={{
                 display:'flex',
                 flexDirection:'column',
-                gap:'20px',
+                gap:'30px',
                 backgroundColor:'whitesmoke',
                 padding:'40px',
                 marginTop:'100px',
-                borderRadius:'10px'
+                borderRadius:'10px',
+                justifyContent:'center',
+                alignItems:'center'
             }}
             >
 
+            <Typography sx={{fontWeight:'bold', fontSize:'32px'}} >Your Task</Typography>
 
                 {tasks.map((task) => (
                     <ListItem key={task.id}

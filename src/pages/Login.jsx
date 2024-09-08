@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axiosInstance from '../axiosConfig';
-import { TextField, Button, Typography, Container } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { TextField, Button, Typography, Container, Box } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -51,6 +51,20 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
+
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: '10px'
+                }}
+            >
+                <Typography>Don't have an account?</Typography>
+                <Link to="/register" sx={{ textDecoration: "none", color: 'inherit' }}>
+                    SignUp
+                </Link>
+            </Box>
+
             <Button
                 fullWidth
                 variant="contained"
