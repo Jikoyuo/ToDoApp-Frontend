@@ -1,3 +1,7 @@
+1. Git Clone untuk mendapatkan file
+2. npm install di terminal
+3. npm run dev di terminal untuk run ReactJS
+
 Tampilan ToDo setelah di isi, mampu menambahkan, menghapus mengedit dan read data JSON yang dilempar dari backend. Menggunakan framework dari Javascript yaitu ReactJS dan menggunakan frontend tools ViteJS dan Material UI.
 
 ![ssToDo](https://github.com/user-attachments/assets/38792da0-e4a1-46b2-ae45-54c786256682)
